@@ -1,0 +1,732 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Gurmeet Kaur — Marketing Analytics Portfolio</title>
+<meta name="description" content="Gurmeet Kaur — Marketing Analytics graduate, Wright State University. Predictive analytics, customer segmentation, campaign analysis.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600;9..144,700&family=IBM+Plex+Sans:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --paper:#EDEFEA; --paper-2:#E4E7DE; --ink:#1B2A4A; --ink-soft:#5B6472;
+    --gold:#B9873A; --teal:#2F7A6F; --line:#CDD1C4; --card:#FBFBF8;
+    --max:1120px; --radius:2px;
+  }
+  *{box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  @media (prefers-reduced-motion: reduce){ html{scroll-behavior:auto;} *{animation-duration:0.001ms !important; transition-duration:0.001ms !important;} }
+  body{ margin:0; background:var(--paper); color:var(--ink); font-family:'IBM Plex Sans', sans-serif; font-size:16px; line-height:1.6; -webkit-font-smoothing:antialiased; }
+  a{color:inherit;}
+  ::selection{background:var(--gold); color:#fff;}
+  .wrap{max-width:var(--max); margin:0 auto; padding:0 32px;}
+  h1,h2,h3{font-family:'Fraunces', serif; margin:0; color:var(--ink); font-weight:600;}
+  .mono{font-family:'IBM Plex Mono', monospace;}
+  .eyebrow{ font-family:'IBM Plex Mono', monospace; font-size:12px; letter-spacing:.12em; text-transform:uppercase; color:var(--teal); font-weight:500; }
+  :focus-visible{outline:2px solid var(--gold); outline-offset:3px;}
+  svg{flex-shrink:0;}
+
+  header.site-nav{ position:sticky; top:0; z-index:50; background:var(--paper); border-bottom:1px solid var(--line); box-shadow:0 4px 12px -6px rgba(27,42,74,0.08); }
+  .nav-inner{max-width:var(--max); margin:0 auto; padding:14px 32px; display:flex; align-items:center; justify-content:space-between;}
+  .brand{ font-family:'IBM Plex Mono', monospace; font-weight:600; font-size:15px; letter-spacing:.02em; display:flex; align-items:center; gap:8px; text-decoration:none; color:var(--ink); }
+  .brand .dot{width:8px;height:8px;background:var(--gold); border-radius:50%; display:inline-block;}
+  .links{display:flex; gap:18px; list-style:none; margin:0; padding:0;}
+  .links a{ font-family:'IBM Plex Mono', monospace; font-size:12px; text-decoration:none; color:var(--ink-soft); text-transform:uppercase; letter-spacing:.05em; padding:6px 2px; border-bottom:2px solid transparent; transition:color .15s ease, border-color .15s ease; white-space:nowrap; }
+  .links a:hover, .links a.active{color:var(--ink); border-color:var(--gold);}
+  .nav-toggle{display:none; background:none; border:1px solid var(--line); border-radius:var(--radius); padding:8px 10px; cursor:pointer;}
+  .nav-toggle span{display:block; width:18px; height:2px; background:var(--ink); margin:3px 0;}
+  @media (max-width:980px){
+    .links{ position:fixed; top:57px; left:0; right:0; bottom:0; background:var(--paper); flex-direction:column; padding:24px 32px; transform:translateY(-110%); transition:transform .25s ease; border-top:1px solid var(--line); overflow-y:auto; }
+    .links.open{transform:translateY(0);}
+    .links a{font-size:15px; padding:12px 0; border-bottom:1px solid var(--line);}
+    .nav-toggle{display:block;}
+  }
+
+  .hero{padding:88px 0 60px; border-bottom:1px solid var(--line);}
+  .hero .kicker{margin-bottom:16px;}
+  .hero h1{font-size:clamp(38px,6.5vw,68px); line-height:1.02; letter-spacing:-0.01em;}
+  .hero .role{margin-top:14px; font-size:18px; color:var(--ink-soft); max-width:640px;}
+  .hero .role strong{color:var(--ink); font-weight:600;}
+  .hero-grid{display:grid; grid-template-columns:1.4fr 1fr; gap:44px; align-items:end; margin-top:40px;}
+  @media (max-width:900px){.hero-grid{grid-template-columns:1fr; gap:32px;}}
+  .summary-block p{color:var(--ink-soft); font-size:16.5px; max-width:520px;}
+  .cta-row{display:flex; gap:12px; margin-top:20px; flex-wrap:wrap;}
+  .btn{ font-family:'IBM Plex Mono', monospace; font-size:13px; text-decoration:none; padding:11px 18px; border-radius:var(--radius); letter-spacing:.03em; display:inline-flex; align-items:center; gap:8px; transition:transform .15s ease, background .15s ease; }
+  .btn-primary{background:var(--ink); color:var(--paper);}
+  .btn-primary:hover{background:var(--teal); transform:translateY(-1px);}
+  .btn-ghost{border:1px solid var(--line); color:var(--ink);}
+  .btn-ghost:hover{border-color:var(--ink); transform:translateY(-1px);}
+
+  .kpi-panel{background:var(--card); border:1px solid var(--line); border-radius:var(--radius); padding:20px 22px;}
+  .kpi-panel .eyebrow{margin-bottom:12px;}
+  .kpi-row{display:flex; align-items:baseline; justify-content:space-between; gap:12px; margin-bottom:11px;}
+  .kpi-row:last-child{margin-bottom:0;}
+  .kpi-label{font-size:12.5px; color:var(--ink-soft); flex:0 0 auto;}
+  .kpi-value{font-family:'IBM Plex Mono', monospace; font-size:12.5px; font-weight:600; color:var(--ink); margin-left:auto;}
+  .kpi-track{flex:1; height:6px; background:var(--paper-2); border-radius:3px; overflow:hidden; margin:0 10px;}
+  .kpi-fill{height:100%; width:0%; border-radius:3px; transition:width 1.1s cubic-bezier(.2,.8,.2,1);}
+  .kpi-fill.gold{background:var(--gold);}
+  .kpi-fill.teal{background:var(--teal);}
+  .kpi-panel.revealed .kpi-fill.f1{width:90%;}
+  .kpi-panel.revealed .kpi-fill.f2{width:82%;}
+  .kpi-panel.revealed .kpi-fill.f3{width:100%;}
+
+  .contact-strip{ display:flex; flex-wrap:wrap; gap:10px 22px; margin-top:28px; padding-top:22px; border-top:1px solid var(--line); }
+  .contact-strip a, .contact-strip span{ font-family:'IBM Plex Mono', monospace; font-size:12.5px; color:var(--ink-soft); text-decoration:none; display:inline-flex; align-items:center; gap:6px; border-bottom:1px solid transparent; transition:color .15s, border-color .15s; }
+  .contact-strip a:hover{color:var(--ink); border-color:var(--gold);}
+  .contact-strip svg{width:14px; height:14px; stroke:var(--teal);}
+
+  section{padding:60px 0; border-bottom:1px solid var(--line);}
+  section:last-of-type{border-bottom:none;}
+  .section-head{display:flex; align-items:baseline; gap:16px; margin-bottom:30px; flex-wrap:wrap;}
+  .section-head h2{font-size:29px;}
+  .section-head .eyebrow{white-space:nowrap;}
+  .section-rule{flex:1; height:1px; background:var(--line); min-width:40px;}
+  .section-sub{color:var(--ink-soft); font-size:15px; max-width:640px; margin:-18px 0 30px;}
+
+  .why-grid{display:grid; grid-template-columns:repeat(4,1fr); gap:18px;}
+  @media (max-width:980px){.why-grid{grid-template-columns:repeat(2,1fr);}}
+  @media (max-width:560px){.why-grid{grid-template-columns:1fr;}}
+  .why-card{ background:var(--card); border:1px solid var(--line); border-radius:var(--radius); padding:24px 20px; transition:transform .2s ease, box-shadow .2s ease; }
+  .why-card:hover{transform:translateY(-3px); box-shadow:0 12px 24px -16px rgba(27,42,74,0.35);}
+  .why-icon{ width:38px; height:38px; border-radius:50%; background:var(--ink); display:flex; align-items:center; justify-content:center; margin-bottom:16px; }
+  .why-icon svg{width:18px; height:18px; stroke:var(--paper); fill:none;}
+  .why-card h3{font-size:16.5px; font-family:'IBM Plex Sans',sans-serif; font-weight:600; margin-bottom:8px;}
+  .why-card p{font-size:13.8px; color:var(--ink-soft); margin:0;}
+
+  .strength-grid{display:grid; grid-template-columns:repeat(3,1fr); gap:16px;}
+  @media (max-width:900px){.strength-grid{grid-template-columns:repeat(2,1fr);}}
+  @media (max-width:560px){.strength-grid{grid-template-columns:1fr;}}
+  .strength-card{ display:flex; gap:14px; align-items:flex-start; background:var(--card); border:1px solid var(--line); border-radius:var(--radius); padding:18px; }
+  .strength-icon{ flex:0 0 auto; width:34px; height:34px; border-radius:8px; background:var(--paper-2); display:flex; align-items:center; justify-content:center; }
+  .strength-icon svg{width:17px; height:17px; stroke:var(--teal); fill:none;}
+  .strength-card h4{font-size:14.5px; font-weight:600; margin:0 0 4px; font-family:'IBM Plex Sans',sans-serif;}
+  .strength-card p{font-size:13px; color:var(--ink-soft); margin:0; line-height:1.5;}
+
+  .timeline{position:relative; padding-left:28px;}
+  .timeline::before{content:''; position:absolute; left:5px; top:6px; bottom:6px; width:1px; background:var(--line);}
+  .tl-item{position:relative; padding-bottom:28px;}
+  .tl-item:last-child{padding-bottom:0;}
+  .tl-item::before{ content:''; position:absolute; left:-28px; top:4px; width:11px; height:11px; border-radius:50%; background:var(--paper); border:2px solid var(--gold); }
+  .tl-top{display:flex; justify-content:space-between; gap:16px; flex-wrap:wrap;}
+  .tl-top .school{font-family:'Fraunces', serif; font-weight:600; font-size:19px;}
+  .tl-top .when{font-family:'IBM Plex Mono', monospace; font-size:12.5px; color:var(--teal); white-space:nowrap;}
+  .tl-item .degree{color:var(--ink-soft); font-size:14.5px; margin-top:4px;}
+
+  .skills-grid{display:grid; grid-template-columns:repeat(4,1fr); gap:26px;}
+  @media (max-width:900px){.skills-grid{grid-template-columns:repeat(2,1fr);}}
+  @media (max-width:520px){.skills-grid{grid-template-columns:1fr;}}
+  .skill-group .eyebrow{margin-bottom:12px; display:block;}
+  .pill-list{display:flex; flex-wrap:wrap; gap:8px;}
+  .pill{font-size:12.5px; padding:6px 11px; background:var(--card); border:1px solid var(--line); border-radius:20px; color:var(--ink); white-space:nowrap;}
+
+  .dash-panel{background:var(--card); border:1px solid var(--line); border-radius:var(--radius); padding:28px; display:grid; grid-template-columns:1.1fr 1fr; gap:36px;}
+  @media (max-width:860px){.dash-panel{grid-template-columns:1fr;}}
+  .dash-bars .bar-row{margin-bottom:16px;}
+  .dash-bars .bar-row:last-child{margin-bottom:0;}
+  .bar-label{display:flex; justify-content:space-between; font-size:13px; margin-bottom:6px;}
+  .bar-label .name{color:var(--ink); font-weight:500;}
+  .bar-label .count{font-family:'IBM Plex Mono', monospace; color:var(--ink-soft); font-size:12px;}
+  .bar-track{height:8px; background:var(--paper-2); border-radius:4px; overflow:hidden;}
+  .bar-fill{height:100%; width:0; border-radius:4px; transition:width 1s cubic-bezier(.2,.8,.2,1);}
+  .dash-panel.revealed .bar-fill{width:var(--w);}
+
+  .ring-grid{display:grid; grid-template-columns:repeat(2,1fr); gap:18px;}
+  .ring-card{display:flex; flex-direction:column; align-items:center; text-align:center; gap:10px;}
+  .ring-wrap{position:relative; width:76px; height:76px;}
+  .ring-wrap svg{transform:rotate(-90deg);}
+  .ring-wrap .bg{stroke:var(--paper-2);}
+  .ring-wrap .fg{stroke:var(--gold); stroke-linecap:round; stroke-dasharray:207; stroke-dashoffset:207; transition:stroke-dashoffset 1.2s cubic-bezier(.2,.8,.2,1);}
+  .dash-panel.revealed .ring-wrap .fg{stroke-dashoffset:0;}
+  .ring-check{position:absolute; inset:0; display:flex; align-items:center; justify-content:center;}
+  .ring-check svg{width:22px; height:22px; stroke:var(--teal); transform:none;}
+  .ring-card .rlabel{font-size:12px; color:var(--ink-soft); line-height:1.3;}
+
+  .cert-row{display:flex; flex-wrap:wrap; gap:14px;}
+  .cert-card{flex:1; min-width:220px; background:var(--card); border:1px solid var(--line); border-radius:var(--radius); padding:18px; display:flex; align-items:center; gap:12px;}
+  .cert-mark{width:32px; height:32px; border-radius:50%; background:var(--ink); flex:0 0 auto; display:flex; align-items:center; justify-content:center;}
+  .cert-mark svg{width:16px; height:16px;}
+  .cert-card .label{font-size:14px; font-weight:500;}
+
+  .project-card{background:var(--card); border:1px solid var(--line); border-radius:var(--radius); padding:28px 30px; margin-bottom:20px;}
+  .project-card:last-child{margin-bottom:0;}
+  .project-top{display:flex; justify-content:space-between; align-items:flex-start; gap:24px; flex-wrap:wrap;}
+  .project-top h3{font-size:21px;}
+  .stat-chip{font-family:'IBM Plex Mono', monospace; font-size:12px; font-weight:600; background:var(--paper); border:1px solid var(--line); padding:6px 12px; border-radius:20px; color:var(--teal); white-space:nowrap;}
+  .project-card ul{margin:15px 0 0; padding-left:18px; color:var(--ink-soft); font-size:14.5px;}
+  .project-card li{margin-bottom:7px;}
+  .project-card li::marker{color:var(--gold);}
+  .project-tags{display:flex; flex-wrap:wrap; gap:6px; margin-top:15px;}
+  .tag{font-size:11.5px; font-family:'IBM Plex Mono', monospace; color:var(--ink-soft); background:var(--paper-2); padding:4px 8px; border-radius:3px;}
+
+  .exp-card{border-left:2px solid var(--gold); padding-left:24px; position:relative;}
+  .exp-card::before{content:''; position:absolute; left:-7px; top:4px; width:12px; height:12px; background:var(--paper); border:2px solid var(--gold); border-radius:50%;}
+  .exp-top{display:flex; justify-content:space-between; gap:16px; flex-wrap:wrap;}
+  .exp-top h3{font-size:19px;}
+  .exp-top .when{font-family:'IBM Plex Mono', monospace; font-size:12.5px; color:var(--teal);}
+  .exp-company{color:var(--ink-soft); font-size:14px; font-style:italic; margin-top:2px;}
+  .exp-card ul{margin:15px 0 0; padding-left:18px; color:var(--ink-soft); font-size:14.5px;}
+  .exp-card li{margin-bottom:7px;}
+  .exp-card li::marker{color:var(--gold);}
+
+  .ach-grid{display:grid; grid-template-columns:repeat(4,1fr); gap:18px;}
+  @media (max-width:900px){.ach-grid{grid-template-columns:repeat(2,1fr);}}
+  @media (max-width:520px){.ach-grid{grid-template-columns:1fr;}}
+  .ach-card{background:var(--card); border:1px solid var(--line); padding:20px 18px; border-radius:var(--radius);}
+  .ach-num{font-family:'Fraunces', serif; font-size:32px; font-weight:600; color:var(--ink); line-height:1;}
+  .ach-num span{color:var(--gold);}
+  .ach-desc{margin-top:9px; font-size:13px; color:var(--ink-soft); line-height:1.5;}
+
+  .lead-list{display:flex; flex-direction:column; gap:0;}
+  .lead-item{display:flex; gap:18px; padding:18px 0; border-top:1px solid var(--line);}
+  .lead-item:last-child{border-bottom:1px solid var(--line);}
+  .lead-icon{flex:0 0 auto; width:36px; height:36px; border-radius:50%; background:var(--paper-2); display:flex; align-items:center; justify-content:center;}
+  .lead-icon svg{width:17px; height:17px; stroke:var(--teal); fill:none;}
+  .lead-text h4{font-family:'IBM Plex Sans', sans-serif; font-weight:600; font-size:15px; margin:0 0 4px;}
+  .lead-text p{margin:0; color:var(--ink-soft); font-size:14px;}
+
+  .goal-card{ background:var(--ink); color:var(--paper); border-radius:var(--radius); padding:38px 40px; display:flex; gap:28px; align-items:flex-start; flex-wrap:wrap; }
+  .goal-icon{flex:0 0 auto; width:44px; height:44px; border-radius:50%; background:var(--gold); display:flex; align-items:center; justify-content:center;}
+  .goal-icon svg{width:22px; height:22px; stroke:var(--ink); fill:none;}
+  .goal-card p{margin:0; font-size:17px; line-height:1.65; max-width:720px; color:#E4E7DE;}
+  .goal-card p strong{color:#fff;}
+
+  .tools-grid{display:flex; flex-wrap:wrap; gap:10px;}
+  .tool-badge{display:flex; align-items:center; gap:8px; background:var(--card); border:1px solid var(--line); padding:10px 14px; border-radius:var(--radius); font-size:13.5px; font-weight:500;}
+  .tool-dot{width:8px; height:8px; border-radius:50%;}
+
+  footer.contact{background:var(--ink); color:var(--paper); padding:68px 0 40px; border-bottom:none;}
+  footer.contact .section-head h2{color:var(--paper);}
+  footer.contact .eyebrow{color:var(--gold);}
+  footer.contact .section-rule{background:rgba(255,255,255,0.15);}
+  .contact-grid{display:grid; grid-template-columns:1.1fr 1fr; gap:40px;}
+  @media (max-width:760px){.contact-grid{grid-template-columns:1fr;}}
+  footer.contact p.lead{font-size:18.5px; max-width:480px; color:#DDE1D8;}
+  .contact-links{list-style:none; margin:22px 0 0; padding:0; display:flex; flex-direction:column; gap:13px;}
+  .contact-links a, .contact-links span.static-line{ text-decoration:none; color:var(--paper); font-family:'IBM Plex Mono', monospace; font-size:14px; display:flex; align-items:center; gap:10px; border-bottom:1px solid transparent; width:fit-content; padding-bottom:2px; transition:border-color .15s ease, color .15s ease; }
+  .contact-links a:hover{border-color:var(--gold); color:var(--gold);}
+  .contact-links svg{width:15px; height:15px; stroke:var(--gold); fill:none;}
+  .placeholder-tag{font-size:10.5px; background:rgba(185,135,58,0.18); color:var(--gold); padding:2px 7px; border-radius:10px; margin-left:6px; letter-spacing:.03em;}
+  .visa-note{margin-top:26px; font-family:'IBM Plex Mono', monospace; font-size:12px; letter-spacing:.04em; color:var(--gold); border:1px solid rgba(184,135,58,.4); display:inline-block; padding:8px 14px; border-radius:20px;}
+  .foot-bottom{margin-top:52px; padding-top:22px; border-top:1px solid rgba(255,255,255,0.12); font-size:12px; color:#8B93A0; display:flex; justify-content:space-between; flex-wrap:wrap; gap:8px; font-family:'IBM Plex Mono', monospace;}
+
+  .reveal{opacity:0; transform:translateY(14px); transition:opacity .6s ease, transform .6s ease;}
+  .reveal.in{opacity:1; transform:translateY(0);}
+</style>
+</head>
+<body>
+
+<header class="site-nav">
+  <div class="nav-inner">
+    <a href="#top" class="brand"><span class="dot"></span>GURMEET KAUR</a>
+    <button class="nav-toggle" id="navToggle" aria-label="Toggle menu" aria-expanded="false">
+      <span></span><span></span><span></span>
+    </button>
+    <nav>
+      <ul class="links" id="navLinks">
+        <li><a href="#why">Why Hire Me</a></li>
+        <li><a href="#strengths">Strengths</a></li>
+        <li><a href="#education">Education</a></li>
+        <li><a href="#dashboard">Skills</a></li>
+        <li><a href="#projects">Projects</a></li>
+        <li><a href="#experience">Experience</a></li>
+        <li><a href="#goal">Career Goal</a></li>
+        <li><a href="#contact">Contact</a></li>
+      </ul>
+    </nav>
+  </div>
+</header>
+
+<main id="top">
+
+  <section class="hero">
+    <div class="wrap">
+      <div class="kicker eyebrow">Marketing Analytics · Fairborn, OH</div>
+      <h1>Gurmeet Kaur</h1>
+      <p class="role">M.S. Marketing Analytics candidate at <strong>Wright State University</strong> (May 2026), turning campaign and customer data into decisions marketing teams can act on.</p>
+
+      <div class="hero-grid">
+        <div class="summary-block">
+          <p>I build the models and dashboards behind marketing decisions — from predicting which customers will convert, to segmenting audiences, to reading satisfaction data at scale. Certified in Google Analytics and Google Ads, fluent in Python, SQL, Tableau, and Power BI.</p>
+          <div class="cta-row">
+            <a class="btn btn-primary" href="#projects">View Projects →</a>
+            <a class="btn btn-ghost" href="mailto:gurmkaur2002@gmail.com">Get in Touch</a>
+          </div>
+        </div>
+
+        <div class="kpi-panel" id="kpiPanel">
+          <div class="eyebrow">Project Signal</div>
+          <div class="kpi-row">
+            <span class="kpi-label mono">Model accuracy</span>
+            <span class="kpi-track"><span class="kpi-fill gold f1"></span></span>
+            <span class="kpi-value">90%+</span>
+          </div>
+          <div class="kpi-row">
+            <span class="kpi-label mono">Passenger records analyzed</span>
+            <span class="kpi-track"><span class="kpi-fill teal f2"></span></span>
+            <span class="kpi-value">129K+</span>
+          </div>
+          <div class="kpi-row">
+            <span class="kpi-label mono">Customer records processed</span>
+            <span class="kpi-track"><span class="kpi-fill gold f3"></span></span>
+            <span class="kpi-value">41K+</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="contact-strip">
+        <a href="mailto:gurmkaur2002@gmail.com"><svg viewBox="0 0 24 24" fill="none" stroke-width="2"><path d="M4 4h16v16H4z"/><path d="M4 6l8 7 8-7"/></svg>gurmkaur2002@gmail.com</a>
+        <a href="tel:+19373092387"><svg viewBox="0 0 24 24" fill="none" stroke-width="2"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.13.96.36 1.9.68 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.91.32 1.85.55 2.81.68A2 2 0 0 1 22 16.92z"/></svg>+1 (937) 309-2387</a>
+        <a href="https://www.linkedin.com/in/gurmeet-kaur1" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="none" stroke-width="2"><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/><path d="M10 9h4v2a4 4 0 0 1 4-2c3 0 4 2 4 5v7h-4v-6c0-1.5-1-2-2-2s-2 .5-2 2v6h-4z"/></svg>linkedin.com/in/gurmeet-kaur1</a>
+        <a href="https://github.com/gurmkaur2002" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="none" stroke-width="2"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"/></svg>github.com/gurmkaur2002</a>
+        <a href="https://gurmkaur2002.github.io/" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="none" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M2 12h20M12 2a15.3 15.3 0 0 1 0 20 15.3 15.3 0 0 1 0-20z"/></svg>gurmkaur2002.github.io</a>
+    <div class="wrap reveal">
+      <div class="section-head">
+        <h2>Why Hire Me</h2>
+        <span class="eyebrow">The Short Version</span>
+        <span class="section-rule"></span>
+      </div>
+      <div class="why-grid">
+        <div class="why-card">
+          <div class="why-icon"><svg viewBox="0 0 24 24"><path d="M3 17l6-6 4 4 8-8" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/><path d="M14 7h7v7" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+          <h3>Proven model accuracy</h3>
+          <p>Built ML models hitting 90%+ prediction accuracy on real 41K-record datasets — not just coursework theory.</p>
+        </div>
+        <div class="why-card">
+          <div class="why-icon"><svg viewBox="0 0 24 24"><path d="M12 2l3 7h7l-5.5 4.5L18 21l-6-4-6 4 1.5-7.5L2 9h7z" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+          <h3>End-to-end ownership</h3>
+          <p>From raw data to dashboard delivery, I own every stage: cleaning, modeling, visualization, and storytelling.</p>
+        </div>
+        <div class="why-card">
+          <div class="why-icon"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9" stroke-width="2"/><path d="M12 3v18M3 12h18" stroke-width="2"/></svg></div>
+          <h3>Dual lens: marketing + data</h3>
+          <p>A business background plus technical analytics training — I speak both strategy and data fluently.</p>
+        </div>
+        <div class="why-card">
+          <div class="why-icon"><svg viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="16" rx="2" stroke-width="2"/><path d="M8 2v4M16 2v4M3 10h18" stroke-width="2"/></svg></div>
+          <h3>Ready now</h3>
+          <p>STEM-designated M.S. graduate, eligible for CPT/OPT — able to start without visa sponsorship delays for up to 3 years.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="strengths">
+    <div class="wrap reveal">
+      <div class="section-head">
+        <h2>Key Strengths</h2>
+        <span class="eyebrow">What Sets Me Apart</span>
+        <span class="section-rule"></span>
+      </div>
+      <div class="strength-grid">
+        <div class="strength-card">
+          <div class="strength-icon"><svg viewBox="0 0 24 24"><path d="M3 3v18h18" stroke-width="2" stroke-linecap="round"/><path d="M7 15l4-5 3 3 5-7" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+          <div><h4>Data storytelling</h4><p>Turning model output into decisions a marketing team can actually act on.</p></div>
+        </div>
+        <div class="strength-card">
+          <div class="strength-icon"><svg viewBox="0 0 24 24"><circle cx="12" cy="8" r="4" stroke-width="2"/><path d="M4 21c0-4 3.5-7 8-7s8 3 8 7" stroke-width="2"/></svg></div>
+          <div><h4>Cross-functional coordination</h4><p>Proven track record working across vendors, clients, and internal teams.</p></div>
+        </div>
+        <div class="strength-card">
+          <div class="strength-icon"><svg viewBox="0 0 24 24"><path d="M13 2L3 14h7l-1 8 10-12h-7z" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+          <div><h4>Fast tool adoption</h4><p>Went from zero to production-ready across RapidMiner, Scikit-learn, Tableau, and Power BI in one program.</p></div>
+        </div>
+        <div class="strength-card">
+          <div class="strength-icon"><svg viewBox="0 0 24 24"><path d="M9 11l3 3L22 4" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/><path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11" stroke-width="2" stroke-linecap="round"/></svg></div>
+          <div><h4>Detail-oriented execution</h4><p>SMOTE balancing, feature engineering, and precise reporting — the details that make models trustworthy.</p></div>
+        </div>
+        <div class="strength-card">
+          <div class="strength-icon"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9" stroke-width="2"/><path d="M3 12h18M12 3a14 14 0 0 1 0 18 14 14 0 0 1 0-18z" stroke-width="2"/></svg></div>
+          <div><h4>Global perspective</h4><p>International business background — adaptable communication across markets and cultures.</p></div>
+        </div>
+        <div class="strength-card">
+          <div class="strength-icon"><svg viewBox="0 0 24 24"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20V4H6.5A2.5 2.5 0 0 0 4 6.5v13z" stroke-width="2" stroke-linejoin="round"/><path d="M4 19.5V22h13" stroke-width="2" stroke-linecap="round"/></svg></div>
+          <div><h4>Self-directed learner</h4><p>Completed 3 independent, end-to-end analytics projects outside of guided coursework.</p></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="education">
+    <div class="wrap reveal">
+      <div class="section-head">
+        <h2>Education</h2>
+        <span class="eyebrow">01</span>
+        <span class="section-rule"></span>
+      </div>
+      <div class="timeline">
+        <div class="tl-item">
+          <div class="tl-top">
+            <span class="school">Wright State University</span>
+            <span class="when">Jan 2024 – May 2026</span>
+          </div>
+          <div class="degree">M.S., Marketing Analytics: Tools and Insights — Fairborn, OH</div>
+        </div>
+        <div class="tl-item">
+          <div class="tl-top">
+            <span class="school">Graphic Era Hill University</span>
+            <span class="when">Aug 2020 – Jul 2023</span>
+          </div>
+          <div class="degree">B.B.A., Supply Chain Management — India</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="skills">
+    <div class="wrap reveal">
+      <div class="section-head">
+        <h2>Skills</h2>
+        <span class="eyebrow">02</span>
+        <span class="section-rule"></span>
+      </div>
+      <div class="skills-grid">
+        <div class="skill-group">
+          <span class="eyebrow">Languages</span>
+          <div class="pill-list"><span class="pill">Python</span><span class="pill">SQL</span></div>
+        </div>
+        <div class="skill-group">
+          <span class="eyebrow">Visualization</span>
+          <div class="pill-list">
+            <span class="pill">Tableau</span><span class="pill">Power BI</span>
+            <span class="pill">Excel (Pivot Tables, VLOOKUP/XLOOKUP)</span>
+            <span class="pill">Google Analytics</span><span class="pill">Dashboards</span>
+          </div>
+        </div>
+        <div class="skill-group">
+          <span class="eyebrow">Analytics</span>
+          <div class="pill-list">
+            <span class="pill">Predictive Analytics</span><span class="pill">A/B Testing</span>
+            <span class="pill">Customer Segmentation</span><span class="pill">KPI Reporting</span>
+            <span class="pill">Campaign Analysis</span>
+          </div>
+        </div>
+        <div class="skill-group">
+          <span class="eyebrow">ML / Tools</span>
+          <div class="pill-list">
+            <span class="pill">Scikit-learn</span><span class="pill">Random Forest</span>
+            <span class="pill">Logistic Regression</span><span class="pill">Decision Tree</span>
+            <span class="pill">K-Means</span><span class="pill">SMOTE</span>
+            <span class="pill">RapidMiner</span><span class="pill">Pandas</span>
+            <span class="pill">NumPy</span><span class="pill">Google Ads</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="dashboard">
+    <div class="wrap reveal">
+      <div class="section-head">
+        <h2>Skills Dashboard</h2>
+        <span class="eyebrow">03</span>
+        <span class="section-rule"></span>
+      </div>
+      <p class="section-sub">A quick-scan view: toolkit breadth by category, and verified certifications on the right.</p>
+
+      <div class="dash-panel" id="dashPanel">
+        <div class="dash-bars">
+          <div class="eyebrow" style="margin-bottom:16px; display:block;">Toolkit Breadth</div>
+          <div class="bar-row">
+            <div class="bar-label"><span class="name">ML / Tools</span><span class="count">10 tools</span></div>
+            <div class="bar-track"><div class="bar-fill" style="--w:100%; background:var(--gold);"></div></div>
+          </div>
+          <div class="bar-row">
+            <div class="bar-label"><span class="name">Visualization</span><span class="count">5 tools</span></div>
+            <div class="bar-track"><div class="bar-fill" style="--w:50%; background:var(--teal);"></div></div>
+          </div>
+          <div class="bar-row">
+            <div class="bar-label"><span class="name">Analytics Methods</span><span class="count">5 methods</span></div>
+            <div class="bar-track"><div class="bar-fill" style="--w:50%; background:var(--gold);"></div></div>
+          </div>
+          <div class="bar-row">
+            <div class="bar-label"><span class="name">Languages</span><span class="count">2 languages</span></div>
+            <div class="bar-track"><div class="bar-fill" style="--w:20%; background:var(--teal);"></div></div>
+          </div>
+        </div>
+
+        <div>
+          <div class="eyebrow" style="margin-bottom:16px; display:block;">Verified Certifications</div>
+          <div class="ring-grid">
+            <div class="ring-card">
+              <div class="ring-wrap">
+                <svg width="76" height="76" viewBox="0 0 76 76">
+                  <circle class="bg" cx="38" cy="38" r="33" fill="none" stroke-width="6"/>
+                  <circle class="fg" cx="38" cy="38" r="33" fill="none" stroke-width="6"/>
+                </svg>
+                <div class="ring-check"><svg viewBox="0 0 24 24" fill="none" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg></div>
+              </div>
+              <div class="rlabel">Google Analytics</div>
+            </div>
+            <div class="ring-card">
+              <div class="ring-wrap">
+                <svg width="76" height="76" viewBox="0 0 76 76">
+                  <circle class="bg" cx="38" cy="38" r="33" fill="none" stroke-width="6"/>
+                  <circle class="fg" cx="38" cy="38" r="33" fill="none" stroke-width="6"/>
+                </svg>
+                <div class="ring-check"><svg viewBox="0 0 24 24" fill="none" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg></div>
+              </div>
+              <div class="rlabel">Google Ads Search</div>
+            </div>
+            <div class="ring-card">
+              <div class="ring-wrap">
+                <svg width="76" height="76" viewBox="0 0 76 76">
+                  <circle class="bg" cx="38" cy="38" r="33" fill="none" stroke-width="6"/>
+                  <circle class="fg" cx="38" cy="38" r="33" fill="none" stroke-width="6"/>
+                </svg>
+                <div class="ring-check"><svg viewBox="0 0 24 24" fill="none" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg></div>
+              </div>
+              <div class="rlabel">Google Ads Display</div>
+            </div>
+            <div class="ring-card">
+              <div class="ring-wrap">
+                <svg width="76" height="76" viewBox="0 0 76 76">
+                  <circle class="bg" cx="38" cy="38" r="33" fill="none" stroke-width="6"/>
+                  <circle class="fg" cx="38" cy="38" r="33" fill="none" stroke-width="6"/>
+                </svg>
+                <div class="ring-check"><svg viewBox="0 0 24 24" fill="none" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg></div>
+              </div>
+              <div class="rlabel">SQL Certificate</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="certifications">
+    <div class="wrap reveal">
+      <div class="section-head">
+        <h2>Certifications</h2>
+        <span class="eyebrow">04</span>
+        <span class="section-rule"></span>
+      </div>
+      <div class="cert-row">
+        <div class="cert-card"><div class="cert-mark"><svg viewBox="0 0 24 24" fill="none" stroke="#EDEFEA" stroke-width="2"><path d="M20 6L9 17l-5-5"/></svg></div><div class="label">Google Analytics Certified</div></div>
+        <div class="cert-card"><div class="cert-mark"><svg viewBox="0 0 24 24" fill="none" stroke="#EDEFEA" stroke-width="2"><path d="M20 6L9 17l-5-5"/></svg></div><div class="label">Google Ads Search Certification</div></div>
+        <div class="cert-card"><div class="cert-mark"><svg viewBox="0 0 24 24" fill="none" stroke="#EDEFEA" stroke-width="2"><path d="M20 6L9 17l-5-5"/></svg></div><div class="label">Google Ads Display Certification</div></div>
+        <div class="cert-card"><div class="cert-mark"><svg viewBox="0 0 24 24" fill="none" stroke="#EDEFEA" stroke-width="2"><path d="M20 6L9 17l-5-5"/></svg></div><div class="label">SQL Certificate</div></div>
+      </div>
+    </div>
+  </section>
+
+  <section id="projects">
+    <div class="wrap reveal">
+      <div class="section-head">
+        <h2>Projects &amp; Achievements</h2>
+        <span class="eyebrow">05</span>
+        <span class="section-rule"></span>
+      </div>
+
+      <div class="project-card">
+        <div class="project-top">
+          <h3>Bank Telemarketing Predictive Analytics</h3>
+          <span class="stat-chip">90%+ accuracy</span>
+        </div>
+        <ul>
+          <li>Built Logistic Regression, Decision Tree, and Random Forest models using Python and RapidMiner to predict customer term-deposit subscriptions.</li>
+          <li>Processed 41K+ customer records through data cleaning, feature engineering, one-hot encoding, train-test splitting, and SMOTE balancing.</li>
+          <li>Achieved 90%+ prediction accuracy with Random Forest; built Tableau dashboards to analyze campaign performance and customer behavior.</li>
+        </ul>
+        <div class="project-tags"><span class="tag">Python</span><span class="tag">RapidMiner</span><span class="tag">Random Forest</span><span class="tag">SMOTE</span><span class="tag">Tableau</span></div>
+      </div>
+
+      <div class="project-card">
+        <div class="project-top">
+          <h3>Customer Segmentation Analysis</h3>
+          <span class="stat-chip">K-Means clustering</span>
+        </div>
+        <ul>
+          <li>Applied K-Means clustering (Python, Scikit-learn) to segment customers by behavioral and engagement patterns.</li>
+          <li>Cleaned and processed customer data using Pandas; developed insights to support targeted marketing and retention strategies.</li>
+        </ul>
+        <div class="project-tags"><span class="tag">Python</span><span class="tag">Scikit-learn</span><span class="tag">Pandas</span><span class="tag">K-Means</span></div>
+      </div>
+
+      <div class="project-card">
+        <div class="project-top">
+          <h3>Maven Airlines Customer Satisfaction Analysis</h3>
+          <span class="stat-chip">129K+ records</span>
+        </div>
+        <ul>
+          <li>Analyzed 129K+ passenger survey records to identify key drivers of satisfaction, service quality, and customer experience.</li>
+          <li>Built Tableau dashboards and segmentation models evaluating travel behavior, flight class, Wi-Fi ratings, delays, and service performance.</li>
+          <li>Identified top satisfaction drivers: online boarding, in-flight Wi-Fi, seat comfort, cleanliness, and delay sensitivity.</li>
+        </ul>
+        <div class="project-tags"><span class="tag">Tableau</span><span class="tag">Segmentation</span><span class="tag">Survey Data</span></div>
+      </div>
+
+      <div class="ach-grid" style="margin-top:28px;">
+        <div class="ach-card"><div class="ach-num"><span>90</span>%+</div><div class="ach-desc">Prediction accuracy with a Random Forest model on 41K+ records.</div></div>
+        <div class="ach-card"><div class="ach-num"><span>129</span>K+</div><div class="ach-desc">Passenger survey records analyzed end-to-end for satisfaction drivers.</div></div>
+        <div class="ach-card"><div class="ach-num"><span>4</span>x</div><div class="ach-desc">Certifications across Google Analytics, Google Ads, and SQL.</div></div>
+        <div class="ach-card"><div class="ach-num"><span>3</span></div><div class="ach-desc">End-to-end analytics projects owned solo, start to finish.</div></div>
+      </div>
+    </div>
+  </section>
+
+  <section id="experience">
+    <div class="wrap reveal">
+      <div class="section-head">
+        <h2>Work Experience</h2>
+        <span class="eyebrow">06</span>
+        <span class="section-rule"></span>
+      </div>
+      <div class="exp-card">
+        <div class="exp-top">
+          <h3>Executive Assistant — Business &amp; Travel Management</h3>
+          <span class="when mono">2021 – 2023</span>
+        </div>
+        <div class="exp-company">SR Tour &amp; Travel Company, India</div>
+        <ul>
+          <li>Tracked bookings, customer inquiries, pricing data, vendor details, and operational KPIs for 50+ clients monthly using Excel and reporting tools.</li>
+          <li>Conducted customer data review and market research to identify travel preferences, seasonal demand trends, and service improvement opportunities.</li>
+          <li>Prepared business reports and coordinated across customers, vendors, and internal teams, improving workflow efficiency and turnaround time.</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <section id="leadership">
+    <div class="wrap reveal">
+      <div class="section-head">
+        <h2>Leadership &amp; Ownership</h2>
+        <span class="eyebrow">07</span>
+        <span class="section-rule"></span>
+      </div>
+      <div class="lead-list">
+        <div class="lead-item">
+          <div class="lead-icon"><svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="4"/><path d="M4 21c0-4 3.5-7 8-7s8 3 8 7"/></svg></div>
+          <div class="lead-text"><h4>Cross-functional coordination</h4><p>Coordinated day-to-day operations between customers, vendors, and internal teams at SR Tour & Travel, streamlining workflows across all three groups.</p></div>
+        </div>
+        <div class="lead-item">
+          <div class="lead-icon"><svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/></svg></div>
+          <div class="lead-text"><h4>Independent project ownership</h4><p>Led all three analytics projects solo, from data acquisition and cleaning through modeling and final dashboard delivery.</p></div>
+        </div>
+        <div class="lead-item">
+          <div class="lead-icon"><svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 3v18h18"/><path d="M18 9l-5 5-4-4-4 4"/></svg></div>
+          <div class="lead-text"><h4>Client &amp; stakeholder reporting</h4><p>Owned reporting for 50+ monthly client accounts, translating raw booking and pricing data into business-ready summaries.</p></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="goal">
+    <div class="wrap reveal">
+      <div class="section-head">
+        <h2>Career Goal</h2>
+        <span class="eyebrow">08</span>
+        <span class="section-rule"></span>
+      </div>
+      <div class="goal-card">
+        <div class="goal-icon"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9" stroke-width="2"/><circle cx="12" cy="12" r="4" stroke-width="2"/><circle cx="12" cy="12" r="0.5" stroke-width="2"/></svg></div>
+        <p>I'm looking for a <strong>Marketing Analytics, Data Analytics, or Digital Marketing role</strong> where I can turn customer and campaign data into decisions that move real business metrics — ideally on a team that values curiosity, ownership, and continuous experimentation. Long-term, I want to grow into a strategic analytics lead who bridges data science and marketing strategy.</p>
+      </div>
+    </div>
+  </section>
+
+  <section id="tools">
+    <div class="wrap reveal">
+      <div class="section-head">
+        <h2>Tools &amp; Technologies</h2>
+        <span class="eyebrow">09</span>
+        <span class="section-rule"></span>
+      </div>
+      <div class="tools-grid">
+        <span class="tool-badge"><span class="tool-dot" style="background:var(--gold);"></span>Python</span>
+        <span class="tool-badge"><span class="tool-dot" style="background:var(--teal);"></span>SQL</span>
+        <span class="tool-badge"><span class="tool-dot" style="background:var(--gold);"></span>Tableau</span>
+        <span class="tool-badge"><span class="tool-dot" style="background:var(--teal);"></span>Power BI</span>
+        <span class="tool-badge"><span class="tool-dot" style="background:var(--gold);"></span>Excel</span>
+        <span class="tool-badge"><span class="tool-dot" style="background:var(--teal);"></span>RapidMiner</span>
+        <span class="tool-badge"><span class="tool-dot" style="background:var(--gold);"></span>Scikit-learn</span>
+        <span class="tool-badge"><span class="tool-dot" style="background:var(--teal);"></span>Pandas</span>
+        <span class="tool-badge"><span class="tool-dot" style="background:var(--gold);"></span>NumPy</span>
+        <span class="tool-badge"><span class="tool-dot" style="background:var(--teal);"></span>Google Analytics</span>
+        <span class="tool-badge"><span class="tool-dot" style="background:var(--gold);"></span>Google Ads</span>
+        <span class="tool-badge"><span class="tool-dot" style="background:var(--teal);"></span>GitHub</span>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<footer class="contact" id="contact">
+  <div class="wrap">
+    <div class="section-head">
+      <h2>Let's Talk</h2>
+      <span class="eyebrow">10 — Contact</span>
+      <span class="section-rule"></span>
+    </div>
+    <div class="contact-grid">
+      <div>
+        <p class="lead">Open to Marketing Analytics, Data Analytics, and Digital Marketing roles across the U.S. — I'd love to talk about how I can help your team turn data into decisions.</p>
+        <div class="visa-note">Eligible for CPT/OPT — F-1 Visa, STEM-Designated Program</div>
+      </div>
+      <ul class="contact-links">
+        <li><a href="mailto:gurmkaur2002@gmail.com"><svg viewBox="0 0 24 24" fill="none" stroke-width="2"><path d="M4 4h16v16H4z"/><path d="M4 6l8 7 8-7"/></svg>gurmkaur2002@gmail.com</a></li>
+        <li><a href="tel:+19373092387"><svg viewBox="0 0 24 24" fill="none" stroke-width="2"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.13.96.36 1.9.68 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.91.32 1.85.55 2.81.68A2 2 0 0 1 22 16.92z"/></svg>+1 (937) 309-2387</a></li>
+        <li><a href="https://www.linkedin.com/in/gurmeet-kaur1" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="none" stroke-width="2"><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/><path d="M10 9h4v2a4 4 0 0 1 4-2c3 0 4 2 4 5v7h-4v-6c0-1.5-1-2-2-2s-2 .5-2 2v6h-4z"/></svg>linkedin.com/in/gurmeet-kaur1</a></li>
+        <li><a href="https://github.com/gurmkaur2002" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="none" stroke-width="2"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"/></svg>github.com/gurmkaur2002</a></li>
+        <li><a href="https://gurmkaur2002.github.io/" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="none" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M2 12h20M12 2a15.3 15.3 0 0 1 0 20 15.3 15.3 0 0 1 0-20z"/></svg>gurmkaur2002.github.io</a></li>
+        <li><a href="#top"><svg viewBox="0 0 24 24" fill="none" stroke-width="2"><path d="M21 10c0 7-9 12-9 12s-9-5-9-12a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>Fairborn, OH</a></li>
+      </ul>
+    </div>
+    <div class="foot-bottom">
+      <span>© 2026 Gurmeet Kaur</span>
+      <span>Marketing Analytics · Wright State University</span>
+    </div>
+  </div>
+</footer>
+
+<script>
+  const navToggle = document.getElementById('navToggle');
+  const navLinks = document.getElementById('navLinks');
+  navToggle.addEventListener('click', () => {
+    const isOpen = navLinks.classList.toggle('open');
+    navToggle.setAttribute('aria-expanded', isOpen);
+  });
+  navLinks.querySelectorAll('a').forEach(a => a.addEventListener('click', () => {
+    navLinks.classList.remove('open');
+    navToggle.setAttribute('aria-expanded', 'false');
+  }));
+
+  const revealEls = document.querySelectorAll('.reveal');
+  const io = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) { entry.target.classList.add('in'); io.unobserve(entry.target); }
+    });
+  }, { threshold: 0.12 });
+  revealEls.forEach(el => io.observe(el));
+
+  window.addEventListener('load', () => {
+    setTimeout(() => { document.getElementById('kpiPanel').classList.add('revealed'); }, 300);
+  });
+
+  const dashPanel = document.getElementById('dashPanel');
+  const dio = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) { entry.target.classList.add('revealed'); dio.unobserve(entry.target); }
+    });
+  }, { threshold: 0.3 });
+  dio.observe(dashPanel);
+
+  const sections = document.querySelectorAll('main section, footer#contact');
+  const navAnchors = document.querySelectorAll('.links a');
+  const spy = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      const id = entry.target.getAttribute('id');
+      const link = document.querySelector(`.links a[href="#${id}"]`);
+      if (!link) return;
+      if (entry.isIntersecting) {
+        navAnchors.forEach(a => a.classList.remove('active'));
+        link.classList.add('active');
+      }
+    });
+  }, { rootMargin: '-40% 0px -50% 0px' });
+  sections.forEach(s => spy.observe(s));
+</script>
+
+</body>
+</html>
